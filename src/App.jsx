@@ -10,9 +10,14 @@ function App() {
 
   const url = "https://pokeapi.co/api/v2/pokemon/?limit=10&offset=0";
 
+  // useEffect(() => {
+  //   fetchPokeData();
+  // }, [pokemons]);
+  // console 무한 출력 이슈로 잠시 빈 배열로 대체.
+  
   useEffect(() => {
     fetchPokeData();
-  }, [pokemons]);
+  }, []);
 
   const fetchPokeData = async () => {
     try {

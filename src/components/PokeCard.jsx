@@ -12,7 +12,6 @@ const PokeCard = ({url, name}) => {
     async function fetchPokeDetailData() {
         try {
             const response = await axios.get(url);
-            console.log(response.data);
             const pokemonData = formatPokemonData(response.data);
             setpokemon(pokemonData)
         } catch (error) {
@@ -32,9 +31,33 @@ const PokeCard = ({url, name}) => {
 
     }
 
+    const bg = `bg-${pokemon?.type}`;
+    const border = `border-${pokemon?.type}`;
+    const text = `text-${pokemon?.type}`;
+
+    const img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`
+
+   console.log(text)
 
   return (
-    <div>PokeCard</div>
+    <>
+    { pokemon &&  
+        <a 
+            href={`/pokemon/${name}`}
+            className = {`box-border rounded-lg ${border} w-[8.5rem] h-[8.5rem] z-0 bg-slate-800 justify-between items-center `}
+        >
+            <div
+                className={`${text} h-[1.5rem] text-xs w-full pt-1 px-2 text-right rounded-t-lg`}
+            >
+                #{pokemon.id.toString()}
+            </div>
+        
+        </a>
+    
+
+    }
+ 
+    </>
   )
 }
 
