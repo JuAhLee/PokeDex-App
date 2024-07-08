@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import PokeCard from "./components/PokeCard";
 
 function App() {
   
   const [pokemons, setpokemons] = useState([]);
 
-  const url = "https://pokeapi.co/api/v2/pokemon/?limit=1008&offset=0";
+  const url = "https://pokeapi.co/api/v2/pokemon/?limit=10&offset=0";
 
   useEffect(() => {
     fetchPokeData();
@@ -15,9 +16,8 @@ function App() {
 
   const fetchPokeData = async () => {
     try {
-      const response = await axios.get(url);
-      console.log(response.data.results);
-      setpokemons(response.data.results);
+    const response = await axios.get(url);
+    setpokemons(response.data.results);
     } catch (error) {
       console.error(error);
     }
@@ -32,7 +32,9 @@ function App() {
         <div className="flex flex-row flex-wrap gap-[16px] items-center justify-center px-2 max-w-4xl b">
           {pokemons.length > 0 ? 
           (
-            pokemons.map(({ url, name }, index) => <div>{name}</div>)
+            pokemons.map(({ url, name }, index) =>
+                <PokeCard key={url} url= {url} name={name}/>
+              )
           ) : 
           (
             <h2 className="font-medium text-lg text-slate-900 mb-1">포켓몬이 없습니다.</h2>
