@@ -5,6 +5,8 @@ import { Loading } from "../../assets/Loading";
 import { LessThan } from "../../assets/LessThan";
 import { GreaterThan } from "../../assets/GreaterThan";
 import { ArrowLeft } from "../../assets/ArrowLeft";
+import { Balance } from "../../assets/Balance";
+import { Vector } from "../../assets/Vector";
 
 const DetailPage = () => {
   const [pokemon, setPokemon] = useState();
@@ -144,6 +146,8 @@ const DetailPage = () => {
           </Link>
         )}
 
+        {/* Section - PoKeCard _ TOP */}
+
         <section className="w-full flex flex-col z-20 items-center justify-end relative h-full">
           <div className="absolute z-30 top-6 flex items-center w-full justify-between px-2">
             <div className="flex items-center gap-1">
@@ -169,6 +173,57 @@ const DetailPage = () => {
               className="object-contain h-full"
             />
           </div>
+        </section>
+
+        {/* Section - PoKeCard _ Bottom */}
+        <section className="w-full min-h-[65%] h-full bg-gray-800 z-10 pt-14 flex flex-col items-center gap-3 px-5 pb-4">
+          <div className="flex items-center justify-center gap-4">
+            포켓몬 타입
+          </div>
+
+          <h2 className={`text-base font-semibold ${text}`}>정보</h2>
+
+          <div className="flex w-full items-center justify-between max-w-[400px] text-center">
+            <div className="w-full">
+              <h4 className="text-[0.5rem] text-zinc-100">Weight</h4>
+              <div className="text-sm flex mt-1 gap-2 justify-center text-zinc-200">
+                <Balance />
+                {pokemon.weight}kg
+              </div>
+            </div>
+
+            <div className="w-full">
+              <h4 className="text-[0.5rem] text-zinc-100">Weight</h4>
+              <div className="text-sm flex mt-1 gap-2 justify-center text-zinc-200">
+                <Vector />
+                {pokemon.height}m
+              </div>
+            </div>
+
+            <div className="w-full">
+              <h4 className="text-[0.5rem] text-zinc-100">Weight</h4>
+              {pokemon.abilities.map((ability) => (
+                <div
+                  key={ability}
+                  className="text-[0.5rem] text-zinc-100 capitalize"
+                >
+                  {ability}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <h2 className={`text-base font-semibold ${text}`}>기본 능력치</h2>
+          <div className="w-full">Stat</div>
+          {/* Modal */}
+          {pokemon.DamageRelations && (
+            <div className="w-10/12">
+              <h2 className={`text-base text-center font-semibold ${text}`}>
+                데미지 관계
+              </h2>
+              데미지
+            </div>
+          )}
         </section>
       </div>
     </article>
