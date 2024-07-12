@@ -1,8 +1,11 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const DetailPage = () => {
+  const [pokemon, setPokemon] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
   const params = useParams();
   const pokemonId = params.id;
   const baseUrl = `https://pokeapi.co/api/v2/pokemon/`;
@@ -42,7 +45,9 @@ const DetailPage = () => {
           stats: formatPokemonStats(stats),
           DamageRelations: DamageRelations,
         };
-        console.log(formattedPokemonData);
+        setPokemon(formattedPokemonData);
+        setIsLoading(false);
+        // console.log(formattedPokemonData);
       }
     } catch (error) {
       console.error(error);
@@ -90,6 +95,8 @@ const DetailPage = () => {
       previous: previousResponse?.data?.results?.[0]?.name,
     };
   }
+
+  if (isLoading) return <div>...loading</div>;
   return <div>DetailPage</div>;
 };
 
