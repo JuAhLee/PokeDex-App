@@ -9,6 +9,7 @@ import { Balance } from "../../assets/Balance";
 import { Vector } from "../../assets/Vector";
 import Type from "../../components/Type";
 import BaseStat from "../../components/BaseStat";
+import DamageRelations from "../../components/DamageRelations";
 
 const DetailPage = () => {
   const [pokemon, setPokemon] = useState();
@@ -221,14 +222,15 @@ const DetailPage = () => {
           <div className="w-full">
             <table>
               <tbody>
-                {pokemon.stats.map((stat) => (
-                  <BaseStat
-                    key={stat.name}
-                    valueStat={stat.baseStat}
-                    nameStat={stat.name}
-                    type={pokemon.types[0]}
-                  />
-                ))}
+                {pokemon.stats &&
+                  pokemon.stats?.map((stat) => (
+                    <BaseStat
+                      key={stat.name}
+                      valueStat={stat.baseStat}
+                      nameStat={stat.name}
+                      type={pokemon.types[0]}
+                    />
+                  ))}
               </tbody>
             </table>
           </div>
@@ -237,7 +239,7 @@ const DetailPage = () => {
           {pokemon.DamageRelations && (
             <div className="w-10/12">
               <h2 className={`text-base text-center font-semibold ${text}`}>
-                데미지 관계
+                <DamageRelations damages={pokemon.DamageRelations} />
               </h2>
               데미지
             </div>
