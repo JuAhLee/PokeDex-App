@@ -57,16 +57,40 @@ const DetailPage = () => {
           types: types.map((type) => type.type.name),
           DamageRelations: DamageRelations,
           sprites: formatPokemonSprites(sprites),
+          description: await getPokemonDescription(id),
         };
+
         setPokemon(formattedPokemonData);
         setIsLoading(false);
-        // console.log(formattedPokemonData);
+        console.log(formattedPokemonData);
       }
     } catch (error) {
       console.error(error);
       setIsLoading(false);
     }
   }
+
+  const filterAndFormatDescription = (flavorText) => {
+    const koreanDescriptions = flavorText
+      ?.filter((text) => text.language.name === "ko")
+      .map((text) => text.flavor_text.replace(/\r|\n|\f/g, " "));
+
+    return koreanDescriptions;
+  };
+
+  const getPokemonDescription = async (id) => {
+    const url = `https://pokeapi.co/api/v2/pokemon-species/${id}/`;
+
+    const { data: pokemonSpecies } = await axios.get(url);
+
+    const descriptions = filterAndFormatDescription(
+      pokemonSpecies.flavor_text_entries
+    );
+
+    console.log("test", descriptions);
+
+    return descriptions[Math.floor(Math.random() * descriptions.length)];
+  };
 
   const formatPokemonSprites = (sprites) => {
     const newSprites = { ...sprites };
@@ -250,6 +274,12 @@ const DetailPage = () => {
               </tbody>
             </table>
           </div>
+
+          {/* dedescriptions */}
+          <h2 className={`text-base font font-semibold ${text}`}>설명</h2>
+          <p className="text-md leading-4 font-sans text-zinc-200 max-w-[30rem] text-center ">
+            {pokemon.description}
+          </p>
 
           {/* sprites */}
           <div className="flex my-8 flex-wrap justify-center">
