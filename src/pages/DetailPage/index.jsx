@@ -14,7 +14,7 @@ import DamageModal from "../../components/DamageModal";
 
 const DetailPage = () => {
   const [pokemon, setPokemon] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const params = useParams();
@@ -22,11 +22,12 @@ const DetailPage = () => {
   const baseUrl = `https://pokeapi.co/api/v2/pokemon/`;
 
   useEffect(() => {
-    fetchPokemonData();
-  }, []);
+    setIsLoading(true);
+    fetchPokemonData(pokemonId);
+  }, [pokemonId]);
 
-  async function fetchPokemonData() {
-    const url = `${baseUrl}${pokemonId}`;
+  async function fetchPokemonData(id) {
+    const url = `${baseUrl}${id}`;
 
     try {
       const { data: pokemonData } = await axios.get(url);
@@ -173,7 +174,7 @@ const DetailPage = () => {
         {pokemon.previous && (
           <Link
             className="absolute top-[40%] -translate-y-1/2 z-50 left-1 "
-            to={`pokemon/${pokemon.previous}`}
+            to={`/pokemon/${pokemon.previous}`}
           >
             <LessThan className="w-5 h-8 p-1" />
           </Link>
@@ -182,7 +183,7 @@ const DetailPage = () => {
         {pokemon.next && (
           <Link
             className="absolute top-[40%] -translate-y-1/2 z-50 right-1"
-            to={`pokemon/${pokemon.next}`}
+            to={`/pokemon/${pokemon.next}`}
           >
             <GreaterThan className="w-5 h-8 p-1" />
           </Link>
@@ -275,7 +276,7 @@ const DetailPage = () => {
             </table>
           </div>
 
-          {/* dedescriptions */}
+          {/* descriptions */}
           <h2 className={`text-base font font-semibold ${text}`}>설명</h2>
           <p className="text-md leading-4 font-sans text-zinc-200 max-w-[30rem] text-center ">
             {pokemon.description}
