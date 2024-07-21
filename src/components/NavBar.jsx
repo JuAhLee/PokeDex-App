@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const NavBar = () => {
   const [show, setShow] = useState(false);
+
+  const { pathname } = useLocation();
+
   console.log(show);
 
   const listener = () => {
@@ -32,9 +36,27 @@ const NavBar = () => {
           }}
         />
       </Logo>
+      {pathname === "/login" ? <Login>Login</Login> : "프로필"}
     </NavWrapper>
   );
 };
+
+const Login = styled.a`
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 8px 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.55px;
+  border: 1px solid #f9f9f9;
+  border-radius: 4px;
+  transition: all 0.2s ease 0s;
+  color: white;
+
+  &:hover {
+    background-color: #f9f9f9;
+    color: #000;
+    border-color: transparent;
+  }
+`;
 
 const Image = styled.img`
   cursor: pointer;
