@@ -1,11 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import app from "../firebase";
 
 const NavBar = () => {
+  // firebase.jsx 연결
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
   const [show, setShow] = useState(false);
 
   const { pathname } = useLocation();
+
+  const handleAuth = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result); // 로그인 정보
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   console.log(show);
 
@@ -36,7 +52,12 @@ const NavBar = () => {
           }}
         />
       </Logo>
-      {pathname === "/login" ? <Login>Login</Login> : "프로필"}
+
+      {pathname === "/login" ? (
+        <Login onClick={handleAuth}>Login</Login>
+      ) : (
+        "프로필"
+      )}
     </NavWrapper>
   );
 };
