@@ -10,12 +10,16 @@ import {
 } from "firebase/auth";
 import app from "../firebase";
 
+const initialUserData = localStorage.getItem("userData")
+  ? JSON.parse(localStorage.getItem("userData"))
+  : {};
+
 const NavBar = () => {
   // firebase.jsx 연결
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(initialUserData);
 
   const [show, setShow] = useState(false);
 
@@ -43,6 +47,7 @@ const NavBar = () => {
       .then((result) => {
         // console.log(result); // 로그인 정보
         setUserData(result.user);
+        localStorage.setItem("userData", JSON.stringify(result.user));
       })
       .catch((error) => {
         console.error(error);
@@ -95,7 +100,7 @@ const NavBar = () => {
         <SignOut>
           <UserImg src={userData.photoURL} alt={userData.displayName} />
           <Dropdown>
-            <span onClick={handleLogOut}> Sign Out</span>
+            <span onClick={handleLogOut}>Sign Out</span>
           </Dropdown>
         </SignOut>
       )}
@@ -120,7 +125,7 @@ const Dropdown = styled.div`
   padding: 10px;
   font-size: 14px;
   letter-spacing: 3px;
-  width: 100px;
+  width: 120px;
   opacity: 0;
   color: white;
 `;
