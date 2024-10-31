@@ -39,6 +39,8 @@
 <br />
 
  - ## 기능 :
+ >## Quick Type  JSON.Stringify 
+ >## DefinitelyTyped
  > ## image lazy loading 
  구현한 해당 기능, 코드
 

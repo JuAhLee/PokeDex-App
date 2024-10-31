@@ -1,5 +1,3 @@
-import React from "react";
-
 const LoginPage = () => {
   return (
     <div>
@@ -8,7 +6,7 @@ const LoginPage = () => {
           <div className="md:w-1/2 px-8 md:px-16">
             <h2 className="font-bold text-2xl ">Pokemon</h2>
             <p className="text-xs mt-4 text-[#002D74]">
-              포켓몬 사이트에 오신걸.
+              포켓몬 사이트에 오신걸
             </p>
             <p className="text-xs mt-4 text-[#002D74]">환영합니다.</p>
             <p className="text-xs mt-4 text-[#002D74]">로그인 해 주세요.</p>
