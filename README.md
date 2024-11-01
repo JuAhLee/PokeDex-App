@@ -8,14 +8,17 @@
  > 포켓몬 1008개체에 대한 **정보, 능력치, 설명**을 적어놓은 포켓몬 사전 사이트 입니다.
 
  > 사이트는 **로그인 페이지, 메인 페이지, 포켓몬 상세 페이지**로 이뤄져 있습니다.
+ 
+ <br>
 
- > **로그인 페이지 :** FireBase를 이용해 Google 로그인을 할 수 있습니다.
+  **로그인 페이지 :** FireBase를 이용해 Google 로그인을 할 수 있습니다.
  <br><br>
    **메인 페이지 :** 원하는 포켓몬을 검색할 수 있습니다.
    <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            : 프로필을 눌러 로그아웃을 할 수 있습니다.  
-            <br>
+            : 프로필을 눌러 로그아웃을 할 수 있습니다.
+            <br> 
+            
    **포켓몬 상세 페이지 :** 포켓몬의 정보, 능력치, 설명을 확인할 수 있습니다.
     <br> 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
