@@ -253,7 +253,7 @@ const DetailPage = () => {
                   </div>
 
                   <div className="w-full">
-                    <h4 className="text-[0.5rem] text-zinc-100">Weight</h4>
+                    <h4 className="text-[0.5rem] text-zinc-100">Height</h4>
                     <div className="text-sm flex mt-1 gap-2 justify-center text-zinc-200">
                       <Vector />
                       {pokemon.height}m
@@ -261,7 +261,7 @@ const DetailPage = () => {
                   </div>
 
                   <div className="w-full">
-                    <h4 className="text-[0.5rem] text-zinc-100">Weight</h4>
+                    <h4 className="text-[0.5rem] text-zinc-100">Ability</h4>
                     {pokemon.abilities.map((ability) => (
                       <div
                         key={ability}
